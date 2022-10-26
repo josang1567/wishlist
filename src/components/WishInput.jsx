@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Proptypes from 'prop-types';
 import { v4 as Uuidv4 } from 'uuid';
 
 function WishInput({ onNewWish }) {
@@ -10,7 +11,6 @@ function WishInput({ onNewWish }) {
         type="text"
         placeholder="Make your wish"
         ref={inputText}
-
         onKeyUp={(event) => {
           if (event.key === 'Enter' && inputText.current.value.length > 0) {
             console.log(`cambio: ${inputText.current.value.length}`);
@@ -24,5 +24,13 @@ function WishInput({ onNewWish }) {
 
   );
 }
+
+WishInput.propTypes = {
+  onNewWish: Proptypes.func,
+};
+WishInput.defaultProps = {
+
+  onNewWish: () => {},
+};
 
 export default WishInput;

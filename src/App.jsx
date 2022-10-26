@@ -25,7 +25,9 @@ function App() {
         setWishes([...wishes, newWish]);
       }}
       />
-      <Whislist whishes={wishes} />
+      <Whislist whishes={wishes} onUpdateWish={(updatedWish)=>{
+        console.log(updatedWish);
+      }} />
     </>
   );
 }
