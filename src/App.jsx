@@ -15,6 +15,8 @@ const initialWishes = [
 ];
 
 function App() {
+ 
+
   console.log(initialWishes);
   const [wishes, setWishes] = useState(initialWishes);
   return (
@@ -25,8 +27,24 @@ function App() {
         setWishes([...wishes, newWish]);
       }}
       />
-      <Whislist whishes={wishes} onUpdateWish={(updatedWish)=>{
-        console.log(updatedWish);
+      <Whislist 
+        whishes={wishes}
+         onUpdateWish={(updatedWish)=>{
+          //opcion 1
+          /*const updatedWishes=wishes.map((wish)=>{
+            if(wish.id===updatedWish.id){
+              return updatedWish;
+            }
+            return wish;
+          });
+          setWishes(updatedWishes);*/
+          //opcion 2 
+        const updatedWishes =[...wishes];
+        const modifyWish=updatedWishes.find(wish=> wish.id===updatedWish.id);
+        modifyWish.done=updatedWish.done;
+        setWishes(updatedWishes);
+        
+        console.log("PRUEBA"+wishes);
       }} />
     </>
   );
