@@ -19,6 +19,16 @@ function WishInput({ onNewWish }) {
           }
         }}
       />
+         <button
+        onClick={(event) => {
+          if ( inputText.current.value.length > 0) {
+            console.log(`cambio: ${inputText.current.value.length}`);
+            onNewWish({ id: Uuidv4(), text: inputText.current.value, done: false });
+            inputText.current.value = '';
+          }
+        }}
+      >Enviar</button>
+
 
     </fieldset>
 
