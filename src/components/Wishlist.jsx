@@ -2,6 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import WishItem from './WishItem';
 import { v4 as Uuidv4 } from 'uuid';
+
 /**
  * Callback to run when a wish changes.
  * @callback onUpdate wish - Callback to run when a wish changes.
@@ -19,15 +20,33 @@ import { v4 as Uuidv4 } from 'uuid';
  * @param {onUpdateWish} callback - Callback to run when a wish changes.
  * @returns HTML with a wish list
  */
-function Wishlist({ whishes, onUpdateWish }) {
+function Wishlist({ whishes, onUpdateWish, onRemoveWish, onSearchWish }) {
+  /*const filteredData=whishes.filter((el)=>{
+    if(onSearchWish===''){
+      return el;
+    }else{
+      return el.text.toLowerCase().includes(props.input);
+    }
+  })*/
+
+
   return (
     <ul className="list-group">
+
       {whishes.map(({ id, text, done }) => (
-        <WishItem wish={{ id, text, done }} key={`wishItem${id}`}
-        onChangeWish={(updatedWish)=>{
-          console.log(updatedWish);
-          onUpdateWish(updatedWish);
-        }} />
+        <WishItem 
+          wish={{ id, text, done }} 
+          key={`wishItem${id}`}
+          onChangeWish={(updatedWish) => {
+            console.log(updatedWish);
+            onUpdateWish(updatedWish);
+          }}
+          onDeleteWish={(id) => {
+            onRemoveWish(id);
+            console.log("click: "+id);
+          }}
+        />
+
       ))}
 
     </ul>
@@ -47,7 +66,7 @@ Wishlist.propTypes = {
 };
 Wishlist.defaultProps = {
   whishes: [],
-  onUpdateWish: ()=> ({id:'',text:'',done:false }),
+  onUpdateWish: () => ({ id: '', text: '', done: false }),
 };
 
 export default Wishlist;
