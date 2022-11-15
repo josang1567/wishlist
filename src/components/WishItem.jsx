@@ -4,7 +4,7 @@ import ClassNames from "classnames";
 
 function WishItem({ wish, onChangeWish, onDeleteWish }) {
   return (
-    <li className="list-group.item wishItem">
+    <li className="list-group.item wishItem" >
       <input
         type="checkbox"
         id={wish.id}

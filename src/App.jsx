@@ -9,6 +9,7 @@ import WishiInput from "./components/WishInput";
 import WishSave from "./components/WishSave";
 import WishOrder from "./components/WishOrder";
 import WishSearch from "./components/WishSearch";
+import { Toast } from "bootstrap";
 
 /*const initialWishes = [
   { id: Uuidv4(), text: 'Aprender React', done: false },
@@ -22,6 +23,8 @@ import WishSearch from "./components/WishSearch";
  */
 function App() {
   let initialWishes = JSON.parse(localStorage.getItem("wishes"));
+  let backupWishes=JSON.parse(localStorage.getItem("wishes"));
+  let searchTextBar="";
   if (initialWishes === null) {
     initialWishes = [
       { id: Uuidv4(), text: "Aprender React", done: false },
@@ -32,6 +35,7 @@ function App() {
   }
   console.log(initialWishes);
   const [wishes, setWishes] = useState(initialWishes);
+  const [search, setSearch]=useState(searchTextBar);
   const searhObject = "";
   useEffect(() => {
     console.log("Render app x " + wishes.length);
@@ -48,18 +52,13 @@ function App() {
           console.log("Elemento de la lista añadido");
           setWishes([...wishes, newWish]);
         }}
+        text={search}
       />
 
-      <WishSearch
-        onSearchWish={(searchWish) => {
-          console.log("Elemento de la lista añadido");
-          console.log(searchWish);
-        }}
-      />
+
       <Whislist
         whishes={wishes}
         onUpdateWish={(updatedWish) => {
-          console.log("Elemento de la lista modificado");
           //opcion 2
           const updatedWishes = [...wishes];
           const modifyWish = updatedWishes.find(
@@ -72,16 +71,41 @@ function App() {
           console.log("cambio en lista: " + wishes);
         }}
         onRemoveWish={(id) => {
-          console.log("Elemento de la lista borrado "+id);
-          const filterWishes=wishes.filter(wish => wish.id!=id);
-          
+          console.log("Elemento de la lista borrado " + id);
+          const filterWishes = wishes.filter(wish => wish.id != id);
+
           console.log(filterWishes);
           setWishes(filterWishes);
-      
-         
-          
+
+
+
         }}
-        onSearhWish={(searchWish) => {}}
+        onSearchWish={(searchText) => {
+          if(searchText!==""){
+            console.log(searchText);
+          setSearch(searchText);
+            console.log(searchTextBar);
+            for (let i = 0; i < wishes.length; i++) {
+              if (wishes[i].text === searchText) {
+                console.log("Existe: "+wishes[i].text);
+                
+              } 
+  
+            }
+            const found = wishes.find(element => {
+              return element.text === searchText;
+            });
+           
+            const filterWishes = wishes.filter(wish => wish.id == found.id);
+            
+            setWishes(filterWishes);
+          }else if((searchText==="")) {
+            setWishes(backupWishes);
+            setSearch(searchText);
+          }
+        
+
+        }}
       />
 
       <WishOrder
@@ -93,8 +117,10 @@ function App() {
       <WishSave
         onWishesSave={() => {
           console.log("clikeado salvar");
+         
           localStorage.setItem("wishes", JSON.stringify(wishes));
         }}
+        text={search  }
       />
     </div>
   );

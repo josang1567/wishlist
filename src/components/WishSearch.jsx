@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
 import Proptypes from "prop-types";
-import { v4 as Uuidv4 } from "uuid";
 
-function WishSearch({ whishes, onsearchWish }) {
+function WishSearch( {onSearchWish} ) {
   const searchText = useRef();
 
   return (
@@ -16,7 +15,9 @@ function WishSearch({ whishes, onsearchWish }) {
         onKeyUp={(event) => {
           if (event.key === "Enter" && searchText.current.value.length > 0) {
             console.log("buscar intro: " + searchText.current.value);
-            return searchText.current.value;
+            onSearchWish(searchText.current.value);
+           searchText.current.value = "";
+
           }
         }}
       />
@@ -25,24 +26,16 @@ function WishSearch({ whishes, onsearchWish }) {
         onClick={(event) => {
           if (searchText.current.value.length > 0) {
             console.log("buscar boton: " + searchText.current.value);
-            return searchText.current.value;
+            onSearchWish(searchText.current.value);
+           searchText.current.value = "";
+            
           }
         }}
       >
         Buscar
       </button>
 
-      <button
-        onClick={(event) => {
-          if (searchText.current.value.length > 0) {
-            console.log("borrar boton");
-            searchText.current.value = "";
-            return searchText.current.value;
-          }
-        }}
-      >
-        X
-      </button>
+     
     </fieldset>
   );
 }

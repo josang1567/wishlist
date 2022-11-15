@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Proptypes from 'prop-types';
 import WishItem from './WishItem';
 import { v4 as Uuidv4 } from 'uuid';
-
+import WishSave from './WishSave';
 /**
  * Callback to run when a wish changes.
  * @callback onUpdate wish - Callback to run when a wish changes.
@@ -21,35 +21,63 @@ import { v4 as Uuidv4 } from 'uuid';
  * @returns HTML with a wish list
  */
 function Wishlist({ whishes, onUpdateWish, onRemoveWish, onSearchWish }) {
-  /*const filteredData=whishes.filter((el)=>{
-    if(onSearchWish===''){
-      return el;
-    }else{
-      return el.text.toLowerCase().includes(props.input);
-    }
-  })*/
+  const searchText = useRef();
 
 
   return (
-    <ul className="list-group">
+    <fieldset>
+      <legend>Search Wish</legend>
 
-      {whishes.map(({ id, text, done }) => (
-        <WishItem 
-          wish={{ id, text, done }} 
-          key={`wishItem${id}`}
-          onChangeWish={(updatedWish) => {
-            console.log(updatedWish);
-            onUpdateWish(updatedWish);
-          }}
-          onDeleteWish={(id) => {
-            onRemoveWish(id);
-            console.log("click: "+id);
-          }}
-        />
+      <input
+        type="text"
+        placeholder="Searh your wish"
+        ref={searchText}
+        onKeyUp={(event) => {
+          if (event.key === "Enter") {
+            console.log("buscar intro: " + searchText.current.value);
+            onSearchWish(searchText.current.value);
 
-      ))}
 
-    </ul>
+          }
+         
+        }}
+      />
+
+      <button
+        onClick={(event) => {
+
+          console.log("buscar boton: " + searchText.current.value);
+          onSearchWish(searchText.current.value);
+
+
+
+        }}
+      >
+        Buscar
+      </button>
+
+
+
+      <ul className="list-group">
+
+        {whishes.map(({ id, text, done }) => (
+          <WishItem
+            wish={{ id, text, done }}
+            key={`wishItem${id}`}
+            onChangeWish={(updatedWish) => {
+              console.log(updatedWish);
+              onUpdateWish(updatedWish);
+            }}
+            onDeleteWish={(id) => {
+              onRemoveWish(id);
+
+            }}
+          />
+
+        ))}
+
+      </ul>
+    </fieldset>
   );
 }
 
