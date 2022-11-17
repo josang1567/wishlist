@@ -16,6 +16,7 @@ html {
   margin-top: 2rem;
   background-color: whitesmoke;
 }
+
 .wish-input {
   border: 0;
   border-bottom: 3px dashed grey;
@@ -46,6 +47,10 @@ html {
 .wish-list__item input {
   width: 2rem;
   height: 2rem;
+}
+.wish-list__item button{
+  border:none;
+  background: none;
 }
 .wish-list__item--done label {
   text-decoration: line-through;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { v4 as Uuidv4 } from "uuid";
 import "bootstrap/dist/js/bootstrap.min";
@@ -8,23 +8,18 @@ import Whislist from "./components/Wishlist";
 import WishiInput from "./components/WishInput";
 import WishSave from "./components/WishSave";
 import WishOrder from "./components/WishOrder";
-import WishSearch from "./components/WishSearch";
-import { Toast } from "bootstrap";
 
-/*const initialWishes = [
-  { id: Uuidv4(), text: 'Aprender React', done: false },
-  { id: Uuidv4(), text: 'Dar de alta a los alumnos en moodle', done: true },
-  { id: Uuidv4(), text: 'Preparar apuntes', done: false },
-  { id: Uuidv4(), text: 'Desayunar', done: true },
-];*/
 /**
  * Manage a wish list.
  * @returns HTMl with a wish list.
  */
 function App() {
   let initialWishes = JSON.parse(localStorage.getItem("wishes"));
-  let backupWishes=JSON.parse(localStorage.getItem("wishes"));
-  let searchTextBar="";
+  const backupWishes = JSON.parse(localStorage.getItem("wishes"));
+  const searchTextBar = "";
+ 
+  var idModify='';
+  
   if (initialWishes === null) {
     initialWishes = [
       { id: Uuidv4(), text: "Aprender React", done: false },
@@ -33,33 +28,29 @@ function App() {
       { id: Uuidv4(), text: "Desayunar", done: true },
     ];
   }
-  console.log(initialWishes);
+
   const [wishes, setWishes] = useState(initialWishes);
-  const [search, setSearch]=useState(searchTextBar);
-  const searhObject = "";
-  useEffect(() => {
-    console.log("Render app x " + wishes.length);
-  });
+  const [search, setSearch] = useState(searchTextBar);
+
   return (
     <div className="app">
       <h1>
-        <img src="icon.png" width="50" height="60" />
+        <img src="icon.png" alt="" width="50" height="60" />
         My wishlist
       </h1>
 
       <WishiInput
         onNewWish={(newWish) => {
-          console.log("Elemento de la lista añadido");
+          //console.log("Elemento de la lista añadido");
           setWishes([...wishes, newWish]);
         }}
         text={search}
       />
 
-
       <Whislist
         whishes={wishes}
         onUpdateWish={(updatedWish) => {
-          //opcion 2
+          // opcion 2
           const updatedWishes = [...wishes];
           const modifyWish = updatedWishes.find(
             (wish) => wish.id === updatedWish.id
@@ -67,67 +58,68 @@ function App() {
           modifyWish.text = updatedWish.text;
           modifyWish.done = updatedWish.done;
           setWishes(updatedWishes);
-
-          console.log("cambio en lista: " + wishes);
+          //console.log(`cambio en lista: ${wishes}`);
         }}
-        onRemoveWish={(id) => {
-          console.log("Elemento de la lista borrado " + id);
-          const filterWishes = wishes.filter(wish => wish.id != id);
-
-          console.log(filterWishes);
+        onRemoveWish={(idBorrado) => {
+          //console.log(`Elemento de la lista borrado ${idBorrado}`);
+          const filterWishes = wishes.filter((wish) => wish.id !== idBorrado);
+          //console.log(filterWishes);
           setWishes(filterWishes);
-
-
-
         }}
-        onSearchWish={(searchText) => {
-          if(searchText!==""){
-            console.log(searchText);
-          setSearch(searchText);
-            console.log(searchTextBar);
-            for (let i = 0; i < wishes.length; i++) {
-              if (wishes[i].text === searchText) {
-                console.log("Existe: "+wishes[i].text);
-                
-              } 
   
+        onSearchWish={(searchText) => {
+          var existe=false;
+          if (searchText !== "") {
+            //console.log(searchText);
+            setSearch(searchText);
+            //console.log(searchTextBar);
+            for (let i = 0; i < wishes.length; i += 1) {
+              if (wishes[i].text.includes( searchText)) {
+                //console.log(`Existe: ${wishes[i].text}`);
+                existe=true;
+              }
             }
-            const found = wishes.find(element => {
-              return element.text === searchText;
-            });
-           
-            const filterWishes = wishes.filter(wish => wish.id == found.id);
+            if(existe===true){
             
-            setWishes(filterWishes);
-          }else if((searchText==="")) {
+              const filterWishes = wishes.filter((wish) => wish.text.includes(searchText));
+              setWishes(filterWishes);
+            
+            }else{}
+            
+           
+          } else if (searchText === "") {
             setWishes(backupWishes);
             setSearch(searchText);
           }
-        
-
         }}
-      />
 
-      <WishOrder
-        onWishesOrder={() => {
-          console.log("Ordenando elementos");
-          setWishes(wishes.sort());
-        }}
-      />
-      <WishSave
-        onWishesSave={() => {
-          console.log("clikeado salvar");
+
+        onModifiedWish={(idEdit,idText)=>{
          
+          console.log(idEdit+"  "+idText);
+          const updatedWishes = [...wishes];
+          const modifyWish = updatedWishes.find(
+            (wish) => wish.id === idEdit
+          );
+          modifyWish.text = idText;
+      
+          setWishes(updatedWishes);
           localStorage.setItem("wishes", JSON.stringify(wishes));
         }}
-        text={search  }
+        text={search}
+      />
+ 
+
+  
+      <WishSave
+        onWishesSave={() => {
+          //console.log("clikeado salvar");
+          localStorage.setItem("wishes", JSON.stringify(wishes));
+        }}
+        text={search}
       />
     </div>
   );
 }
-const remove = () => {
-  setWishes((current) => {
-    current.filter((wish) => wish.text !== "Desayunar");
-  });
-};
+
 export default App;

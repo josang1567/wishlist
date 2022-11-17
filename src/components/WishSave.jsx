@@ -10,19 +10,25 @@ import PropTypes from "prop-types";
  * Render a button action.
  * @param {onWishesSave} callback - Callback to run when a user clicks it.
  */
-function WishSave({ onWishesSave ,text}) {
-  console.log("texto: "+text);
-  if(text==""){
-    return <input disabled={false} type="button" value="Save" onClick={onWishesSave} />;
-
-  }else if (text!=""){
-    return <input disabled={true} type="button" value="Save" onClick={onWishesSave} />;
-
+function WishSave({ onWishesSave, text }) {
+  if (text === "") {
+    return (
+      <input
+        disabled={false}
+        type="button"
+        value="Save"
+        onClick={onWishesSave}
+      />
+    );
+  }
+  if (text !== "") {
+    return <input disabled type="button" value="Save" onClick={onWishesSave} />;
   }
 }
 
 WishSave.propTypes = {
   onWishesSave: PropTypes.func,
+  text: PropTypes.string.isRequired,
 };
 
 WishSave.defaultProps = {
