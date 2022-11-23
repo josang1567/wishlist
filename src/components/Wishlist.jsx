@@ -2,7 +2,7 @@ import React from "react";
 import Proptypes from "prop-types";
 import WishItem from "./WishItem";
 import WishSearch from "./WishSearch";
-
+import { Droppable } from "react-beautiful-dnd";
 /**
  * Callback to run when a wish changes.
  * @callback onUpdate wish - Callback to run when a wish changes.
@@ -28,25 +28,32 @@ function Wishlist({ whishes, onUpdateWish, onRemoveWish, onSearchWish, onModifie
           onSearchWish(searchText);
         }}
       />
+      <Droppable droppableId="tasks">
+        {(droppableProvided)=>
+        <ul {...droppableProvided.droppableProps} 
+        ref={droppableProvided.innerRef}
+        className="list-group">
+          {whishes.map(({ id, text, done },index) => (
+            <WishItem
+              wish={{ id, text, done }}
+              key={`wishItem${id}`}
+              onChangeWish={(updatedWish) => {
+                //console.log(updatedWish);
+                onUpdateWish(updatedWish);
+              }}
+              onDeleteWish={(idBorrado) => {
+                onRemoveWish(idBorrado);
+              }}
+              onEditWish={(idEdit, textEdit) => {
+                onModifiedWish(idEdit, textEdit);
+              }}
+              index={index}
+            />
+          ))}
+          {droppableProvided.placeholder}
+        </ul>}
+      </Droppable>
 
-      <ul className="list-group">
-        {whishes.map(({ id, text, done }) => (
-          <WishItem
-            wish={{ id, text, done }}
-            key={`wishItem${id}`}
-            onChangeWish={(updatedWish) => {
-              //console.log(updatedWish);
-              onUpdateWish(updatedWish);
-            }}
-            onDeleteWish={(idBorrado) => {
-              onRemoveWish(idBorrado);
-            }}
-            onEditWish={(idEdit,textEdit)=>{
-             onModifiedWish (idEdit,textEdit);
-            }}
-          />
-        ))}
-      </ul>
     </fieldset>
   );
 }
@@ -66,8 +73,8 @@ Wishlist.propTypes = {
 Wishlist.defaultProps = {
   whishes: [],
   onUpdateWish: () => ({ id: "", text: "", done: false }),
-  onRemoveWish: () => {},
-  onSearchWish: () => {},
+  onRemoveWish: () => { },
+  onSearchWish: () => { },
 };
 
 export default Wishlist;
