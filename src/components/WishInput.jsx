@@ -1,6 +1,17 @@
 import React, { useRef } from "react";
 import Proptypes from "prop-types";
 import { v4 as Uuidv4 } from "uuid";
+/**
+ * @todo creates a new wish
+ * @param {object} onNewWish - new wish
+ * @param {string} text - text of the wish
+ * @param {*} param0 
+ * @returns 
+ */
+/**
+ * callback to create a new wish
+ * @param {onNewWish} - callback to create a new wish
+ */
 
 function WishInput({ onNewWish, text }) {
   const inputText = useRef();
@@ -9,13 +20,14 @@ function WishInput({ onNewWish, text }) {
       <fieldset>
         <legend>New Wish</legend>
         <input
+        className="wish-input__field"
           type="text"
           placeholder="Make your wish"
           disabled={false}
           ref={inputText}
           onKeyUp={(event) => {
             if (event.key === "Enter" && inputText.current.value.length > 0) {
-              //console.log(`cambio: ${inputText.current.value.length}`);
+              // console.log(`cambio: ${inputText.current.value.length}`);
               onNewWish({
                 id: Uuidv4(),
                 text: inputText.current.value,
@@ -23,8 +35,8 @@ function WishInput({ onNewWish, text }) {
               });
               inputText.current.value = "";
             }
-            if (event.key==="Escape" && inputText.current.value.length > 0) {
-              inputText.current.value = '';
+            if (event.key === "Escape" && inputText.current.value.length > 0) {
+              inputText.current.value = "";
             }
           }}
         />
@@ -33,7 +45,7 @@ function WishInput({ onNewWish, text }) {
           disabled={false}
           onClick={() => {
             if (inputText.current.value.length > 0) {
-              //console.log(`cambio: ${inputText.current.value.length}`);
+              // console.log(`cambio: ${inputText.current.value.length}`);
               onNewWish({
                 id: Uuidv4(),
                 text: inputText.current.value,
@@ -59,7 +71,7 @@ function WishInput({ onNewWish, text }) {
           ref={inputText}
           onKeyUp={(event) => {
             if (event.key === "Enter" && inputText.current.value.length > 0) {
-              //console.log(`cambio: ${inputText.current.value.length}`);
+              // console.log(`cambio: ${inputText.current.value.length}`);
               onNewWish({
                 id: Uuidv4(),
                 text: inputText.current.value,
@@ -74,7 +86,7 @@ function WishInput({ onNewWish, text }) {
           disabled
           onClick={() => {
             if (inputText.current.value.length > 0) {
-              //console.log(`cambio: ${inputText.current.value.length}`);
+              // console.log(`cambio: ${inputText.current.value.length}`);
               onNewWish({
                 id: Uuidv4(),
                 text: inputText.current.value,

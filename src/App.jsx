@@ -4,10 +4,10 @@ import { v4 as Uuidv4 } from "uuid";
 import "bootstrap/dist/js/bootstrap.min";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { DragDropContext } from "react-beautiful-dnd";
 import Whislist from "./components/Wishlist";
 import WishiInput from "./components/WishInput";
 import WishSave from "./components/WishSave";
-import { DragDropContext } from "react-beautiful-dnd";
 
 /**
  * Manage a wish list.
@@ -18,12 +18,12 @@ function App() {
   const backupWishes = JSON.parse(localStorage.getItem("wishes"));
   const searchTextBar = "";
 
-  const reorder=(list,startIndex,endIndex)=>{
-    const result=[...list];
-    const[removed]=result.splice(startIndex,1);
-    result.splice(endIndex,0,removed);
+  const reorder = (list, startIndex, endIndex) => {
+    const result = [...list];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
     return result;
-  }
+  };
 
   if (initialWishes === null) {
     initialWishes = [
@@ -46,24 +46,29 @@ function App() {
 
       <WishiInput
         onNewWish={(newWish) => {
-          //console.log("Elemento de la lista añadido");
+          // console.log("Elemento de la lista añadido");
           setWishes([...wishes, newWish]);
         }}
         text={search}
       />
-      <DragDropContext onDragEnd={(result=>{
-        const{source,destination}=result;
-        if(!destination){
-          return;
-        }
-        if(source.index===destination.index && source.droppableId===destination.droppableId){
-          return;
-        }
-        setWishes(prevWishes=> reorder(prevWishes, source.index, destination.index));
-
-      })}>
+      <DragDropContext
+        onDragEnd={(result) => {
+          const { source, destination } = result;
+          if (!destination) {
+            return;
+          }
+          if (
+            source.index === destination.index &&
+            source.droppableId === destination.droppableId
+          ) {
+            return;
+          }
+          setWishes((prevWishes) =>
+            reorder(prevWishes, source.index, destination.index)
+          );
+        }}
+      >
         <Whislist
-
           whishes={wishes}
           onUpdateWish={(updatedWish) => {
             // opcion 2
@@ -74,45 +79,40 @@ function App() {
             modifyWish.text = updatedWish.text;
             modifyWish.done = updatedWish.done;
             setWishes(updatedWishes);
-            //console.log(`cambio en lista: ${wishes}`);
+            // console.log(`cambio en lista: ${wishes}`);
           }}
           onRemoveWish={(idBorrado) => {
-            //console.log(`Elemento de la lista borrado ${idBorrado}`);
+            // console.log(`Elemento de la lista borrado ${idBorrado}`);
             const filterWishes = wishes.filter((wish) => wish.id !== idBorrado);
-            //console.log(filterWishes);
+            // console.log(filterWishes);
             setWishes(filterWishes);
           }}
-
           onSearchWish={(searchText) => {
-            var existe = false;
+            let existe = false;
             if (searchText !== "") {
-              //console.log(searchText);
+              // console.log(searchText);
               setSearch(searchText);
-              //console.log(searchTextBar);
+              // console.log(searchTextBar);
               for (let i = 0; i < wishes.length; i += 1) {
                 if (wishes[i].text.includes(searchText)) {
-                  //console.log(`Existe: ${wishes[i].text}`);
+                  // console.log(`Existe: ${wishes[i].text}`);
                   existe = true;
                 }
               }
               if (existe === true) {
-
-                const filterWishes = wishes.filter((wish) => wish.text.includes(searchText));
+                const filterWishes = wishes.filter((wish) =>
+                  wish.text.includes(searchText)
+                );
                 setWishes(filterWishes);
-
-              } else { }
-
-
+              }
             } else if (searchText === "") {
               setWishes(backupWishes);
               setSearch(searchText);
             }
           }}
-
-
           onModifiedWish={(idEdit, idText) => {
-            if (idText !== '') {
-              console.log(idEdit + "  " + idText);
+            if (idText !== "") {
+              console.log(`${idEdit}  ${idText}`);
               const updatedWishes = [...wishes];
               const modifyWish = updatedWishes.find(
                 (wish) => wish.id === idEdit
@@ -123,21 +123,15 @@ function App() {
               localStorage.setItem("wishes", JSON.stringify(wishes));
             } else {
               console.log("En blanco");
-
-
             }
-
           }}
           text={search}
         />
-
       </DragDropContext>
-
-
 
       <WishSave
         onWishesSave={() => {
-          //console.log("clikeado salvar");
+          // console.log("clikeado salvar");
           localStorage.setItem("wishes", JSON.stringify(wishes));
         }}
         text={search}
