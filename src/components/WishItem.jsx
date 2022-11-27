@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react";
-import Proptypes from "prop-types";
-import ClassNames from "classnames";
-import { SlWrench } from "react-icons/sl";
-import { BsEraser } from "react-icons/bs";
-import { Draggable } from "react-beautiful-dnd";
-import WishModal from "./WishModal";
-
+import React, { useRef, useState } from 'react';
+import Proptypes from 'prop-types';
+import ClassNames from 'classnames';
+import { SlWrench } from 'react-icons/sl';
+import { BsEraser } from 'react-icons/bs';
+import { Draggable } from 'react-beautiful-dnd';
+import WishModal from './WishModal';
 
 /**
  * Callback to run when a wish changes.
@@ -37,10 +36,9 @@ import WishModal from "./WishModal";
  *
  */
 
-
 /**
  *
- * Manage a item 
+ * Manage a item
  * @param {string}wish.id - identifier for a wish
  * @param {string}wish.text - text of a wish
  * @param {string}wish.done - state of a wish
@@ -51,7 +49,9 @@ import WishModal from "./WishModal";
  *
  * @returns
  */
-function WishItem({ wish, onChangeWish, onDeleteWish, onEditWish, index }) {
+function WishItem({
+  wish, onChangeWish, onDeleteWish, onEditWish, index,
+}) {
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
   const inputText = useRef();
 
@@ -78,7 +78,7 @@ function WishItem({ wish, onChangeWish, onDeleteWish, onEditWish, index }) {
           />
           <label
             className={ClassNames({
-              "text-decoration-line-through": wish.done,
+              'text-decoration-line-through': wish.done,
             })}
             htmlFor={wish.id}
           >
@@ -99,7 +99,7 @@ function WishItem({ wish, onChangeWish, onDeleteWish, onEditWish, index }) {
           <button
             type="button"
             onClick={() => onDeleteWish(wish.id)}
-            style={{ marginLeft: "10px" }}
+            style={{ marginLeft: '10px' }}
           >
             <BsEraser />
           </button>
@@ -108,7 +108,7 @@ function WishItem({ wish, onChangeWish, onDeleteWish, onEditWish, index }) {
             onClick={() => {
               cambiarEstadoModal1(!estadoModal1);
             }}
-            style={{ marginLeft: "10px" }}
+            style={{ marginLeft: '10px' }}
           >
             <SlWrench />
           </button>
@@ -130,7 +130,7 @@ WishItem.propTypes = {
   onEditWish: Proptypes.func,
 };
 WishItem.defaultProps = {
-  wish: { id: "", text: "", done: false },
+  wish: { id: '', text: '', done: false },
   onChangeWish: () => {},
   onDeleteWish: () => {},
   onEditWish: () => {},

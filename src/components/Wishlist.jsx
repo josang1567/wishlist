@@ -1,8 +1,8 @@
-import React from "react";
-import Proptypes from "prop-types";
-import { Droppable } from "react-beautiful-dnd";
-import WishItem from "./WishItem";
-import WishSearch from "./WishSearch";
+import React from 'react';
+import Proptypes from 'prop-types';
+import { Droppable } from 'react-beautiful-dnd';
+import WishItem from './WishItem';
+import WishSearch from './WishSearch';
 /**
  * Callback to run when a wish changes.
  * @callback onUpdate wish - Callback to run when a wish changes.
@@ -43,8 +43,8 @@ import WishSearch from "./WishSearch";
  * @param {idEdit} callback - Callback to run when a wish changes its text.
  * @param {textEdit} callback - Callback to run when a wish changes its text.
  * @param {index} callback - Callback to run when a wish changes order.
- * 
- * 
+ *
+ *
  * @returns HTML with a wish list
  */
 function Wishlist({
@@ -99,7 +99,7 @@ Wishlist.propTypes = {
       id: Proptypes.string.isRequired,
       text: Proptypes.string.isRequired,
       done: Proptypes.bool.isRequired,
-    })
+    }),
   ),
   onUpdateWish: Proptypes.func,
   onRemoveWish: Proptypes.func,
@@ -108,7 +108,7 @@ Wishlist.propTypes = {
 };
 Wishlist.defaultProps = {
   whishes: [],
-  onUpdateWish: () => ({ id: "", text: "", done: false }),
+  onUpdateWish: () => ({ id: '', text: '', done: false }),
   onRemoveWish: () => {},
   onSearchWish: () => {},
   onModifiedWish: () => {},

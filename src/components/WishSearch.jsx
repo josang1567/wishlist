@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import Proptypes from "prop-types";
+import React, { useRef } from 'react';
+import Proptypes from 'prop-types';
 
 function WishSearch({ onSearchWish }) {
   const searchText = useRef();
@@ -13,12 +13,12 @@ function WishSearch({ onSearchWish }) {
         placeholder="Searh your wish"
         ref={searchText}
         onKeyUp={(event) => {
-          if (event.key === "Enter" && searchText.current.value.length > 0) {
+          if (event.key === 'Enter' && searchText.current.value.length > 0) {
             // console.log(`buscar intro: ${searchText.current.value}`);
             onSearchWish(searchText.current.value);
           }
-          if (event.key === "Escape" && searchText.current.value.length > 0) {
-            searchText.current.value = "";
+          if (event.key === 'Escape' && searchText.current.value.length > 0) {
+            searchText.current.value = '';
 
             onSearchWish(searchText.current.value);
           }
@@ -39,13 +39,14 @@ function WishSearch({ onSearchWish }) {
       <button
         type="button"
         onClick={() => {
-          searchText.current.value = "";
+          searchText.current.value = '';
 
           onSearchWish(searchText.current.value);
         }}
-        style={{ color: "red", cursor: "pointer" }}
+        style={{ color: 'red', cursor: 'pointer' }}
       >
-        X{" "}
+        X
+        {' '}
       </button>
     </fieldset>
   );

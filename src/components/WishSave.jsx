@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Callback to run when a user clicks it.
@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
  * @param {onWishesSave} callback - Callback to run when a user clicks it.
  */
 function WishSave({ onWishesSave, text }) {
-  if (text === "") {
+  if (text === '') {
     return (
       <input
         disabled={false}
@@ -21,7 +21,7 @@ function WishSave({ onWishesSave, text }) {
       />
     );
   }
-  if (text !== "") {
+  if (text !== '') {
     return <input disabled type="button" value="Save" onClick={onWishesSave} />;
   }
 }

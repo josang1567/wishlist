@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import "./App.css";
-import { v4 as Uuidv4 } from "uuid";
-import "bootstrap/dist/js/bootstrap.min";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from 'react';
+import './App.css';
+import { v4 as Uuidv4 } from 'uuid';
+import 'bootstrap/dist/js/bootstrap.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { DragDropContext } from "react-beautiful-dnd";
-import Whislist from "./components/Wishlist";
-import WishiInput from "./components/WishInput";
-import WishSave from "./components/WishSave";
+import { DragDropContext } from 'react-beautiful-dnd';
+import Whislist from './components/Wishlist';
+import WishiInput from './components/WishInput';
+import WishSave from './components/WishSave';
 
 /**
  * Manage a wish list.
  * @returns HTMl with a wish list.
  */
 function App() {
-  let initialWishes = JSON.parse(localStorage.getItem("wishes"));
-  const backupWishes = JSON.parse(localStorage.getItem("wishes"));
-  const searchTextBar = "";
+  let initialWishes = JSON.parse(localStorage.getItem('wishes'));
+  const backupWishes = JSON.parse(localStorage.getItem('wishes'));
+  const searchTextBar = '';
 
   const reorder = (list, startIndex, endIndex) => {
     const result = [...list];
@@ -27,10 +27,10 @@ function App() {
 
   if (initialWishes === null) {
     initialWishes = [
-      { id: Uuidv4(), text: "Aprender React", done: false },
-      { id: Uuidv4(), text: "Dar de alta a los alumnos en moodle", done: true },
-      { id: Uuidv4(), text: "Preparar apuntes", done: false },
-      { id: Uuidv4(), text: "Desayunar", done: true },
+      { id: Uuidv4(), text: 'Aprender React', done: false },
+      { id: Uuidv4(), text: 'Dar de alta a los alumnos en moodle', done: true },
+      { id: Uuidv4(), text: 'Preparar apuntes', done: false },
+      { id: Uuidv4(), text: 'Desayunar', done: true },
     ];
   }
 
@@ -58,14 +58,12 @@ function App() {
             return;
           }
           if (
-            source.index === destination.index &&
-            source.droppableId === destination.droppableId
+            source.index === destination.index
+            && source.droppableId === destination.droppableId
           ) {
             return;
           }
-          setWishes((prevWishes) =>
-            reorder(prevWishes, source.index, destination.index)
-          );
+          setWishes((prevWishes) => reorder(prevWishes, source.index, destination.index));
         }}
       >
         <Whislist
@@ -74,7 +72,7 @@ function App() {
             // opcion 2
             const updatedWishes = [...wishes];
             const modifyWish = updatedWishes.find(
-              (wish) => wish.id === updatedWish.id
+              (wish) => wish.id === updatedWish.id,
             );
             modifyWish.text = updatedWish.text;
             modifyWish.done = updatedWish.done;
@@ -89,7 +87,7 @@ function App() {
           }}
           onSearchWish={(searchText) => {
             let existe = false;
-            if (searchText !== "") {
+            if (searchText !== '') {
               // console.log(searchText);
               setSearch(searchText);
               // console.log(searchTextBar);
@@ -100,29 +98,27 @@ function App() {
                 }
               }
               if (existe === true) {
-                const filterWishes = wishes.filter((wish) =>
-                  wish.text.includes(searchText)
-                );
+                const filterWishes = wishes.filter((wish) => wish.text.includes(searchText));
                 setWishes(filterWishes);
               }
-            } else if (searchText === "") {
+            } else if (searchText === '') {
               setWishes(backupWishes);
               setSearch(searchText);
             }
           }}
           onModifiedWish={(idEdit, idText) => {
-            if (idText !== "") {
+            if (idText !== '') {
               console.log(`${idEdit}  ${idText}`);
               const updatedWishes = [...wishes];
               const modifyWish = updatedWishes.find(
-                (wish) => wish.id === idEdit
+                (wish) => wish.id === idEdit,
               );
               modifyWish.text = idText;
 
               setWishes(updatedWishes);
-              localStorage.setItem("wishes", JSON.stringify(wishes));
+              localStorage.setItem('wishes', JSON.stringify(wishes));
             } else {
-              console.log("En blanco");
+              console.log('En blanco');
             }
           }}
           text={search}
@@ -132,7 +128,7 @@ function App() {
       <WishSave
         onWishesSave={() => {
           // console.log("clikeado salvar");
-          localStorage.setItem("wishes", JSON.stringify(wishes));
+          localStorage.setItem('wishes', JSON.stringify(wishes));
         }}
         text={search}
       />

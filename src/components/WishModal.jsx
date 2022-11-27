@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { AiOutlineClose } from "react-icons/ai";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { AiOutlineClose } from 'react-icons/ai';
 
 /**
  * Manage the display of a modal
  * @param {children} - elements that a modal inherits
- * @param {estado} -bool that defines if a modal shows or ocult 
+ * @param {estado} -bool that defines if a modal shows or ocult
  * @param {cambiarEstado}- function that change the modal estado
- * @returns 
+ * @returns
  */
 
 function WishModal({ children, estado, cambiarEstado }) {
@@ -94,7 +94,7 @@ WishModal.propTypes = {
 };
 
 WishModal.defaultProps = {
-  children: "",
-  estado: "",
+  children: '',
+  estado: '',
   cambiarEstado: () => {},
 };

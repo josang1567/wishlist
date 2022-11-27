@@ -1,12 +1,12 @@
-import React, { useRef } from "react";
-import Proptypes from "prop-types";
-import { v4 as Uuidv4 } from "uuid";
+import React, { useRef } from 'react';
+import Proptypes from 'prop-types';
+import { v4 as Uuidv4 } from 'uuid';
 /**
  * @todo creates a new wish
  * @param {object} onNewWish - new wish
  * @param {string} text - text of the wish
- * @param {*} param0 
- * @returns 
+ * @param {*} param0
+ * @returns
  */
 /**
  * callback to create a new wish
@@ -15,28 +15,28 @@ import { v4 as Uuidv4 } from "uuid";
 
 function WishInput({ onNewWish, text }) {
   const inputText = useRef();
-  if (text === "") {
+  if (text === '') {
     return (
       <fieldset>
         <legend>New Wish</legend>
         <input
-        className="wish-input__field"
+          className="wish-input__field"
           type="text"
           placeholder="Make your wish"
           disabled={false}
           ref={inputText}
           onKeyUp={(event) => {
-            if (event.key === "Enter" && inputText.current.value.length > 0) {
+            if (event.key === 'Enter' && inputText.current.value.length > 0) {
               // console.log(`cambio: ${inputText.current.value.length}`);
               onNewWish({
                 id: Uuidv4(),
                 text: inputText.current.value,
                 done: false,
               });
-              inputText.current.value = "";
+              inputText.current.value = '';
             }
-            if (event.key === "Escape" && inputText.current.value.length > 0) {
-              inputText.current.value = "";
+            if (event.key === 'Escape' && inputText.current.value.length > 0) {
+              inputText.current.value = '';
             }
           }}
         />
@@ -51,7 +51,7 @@ function WishInput({ onNewWish, text }) {
                 text: inputText.current.value,
                 done: false,
               });
-              inputText.current.value = "";
+              inputText.current.value = '';
             }
           }}
         >
@@ -60,7 +60,7 @@ function WishInput({ onNewWish, text }) {
       </fieldset>
     );
   }
-  if (text !== "") {
+  if (text !== '') {
     return (
       <fieldset>
         <legend>New Wish</legend>
@@ -70,14 +70,14 @@ function WishInput({ onNewWish, text }) {
           placeholder="Make your wish"
           ref={inputText}
           onKeyUp={(event) => {
-            if (event.key === "Enter" && inputText.current.value.length > 0) {
+            if (event.key === 'Enter' && inputText.current.value.length > 0) {
               // console.log(`cambio: ${inputText.current.value.length}`);
               onNewWish({
                 id: Uuidv4(),
                 text: inputText.current.value,
                 done: false,
               });
-              inputText.current.value = "";
+              inputText.current.value = '';
             }
           }}
         />
@@ -92,7 +92,7 @@ function WishInput({ onNewWish, text }) {
                 text: inputText.current.value,
                 done: false,
               });
-              inputText.current.value = "";
+              inputText.current.value = '';
             }
           }}
         >
