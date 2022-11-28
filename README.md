@@ -33,15 +33,39 @@ En dicha lista se han implementado funciones para modificar el estado de las tar
 La primera vez que se accede a la aplicacion se creara una lista de tareas por defecto la cual se guardara en la memoria local del ordenador
 
 #### Añadir tareas
+Para añadir tareas hay que introducir el texto descriptivo de la tarea en la barra de busqueda y pulsar el boton de añadir o la tecla enter y 
+tras añadirse se debe pulsar el botón de guardado:
+
+![Nuevo](https://user-images.githubusercontent.com/60347715/204242598-af9dae44-1f2d-48e2-87df-0c1d097ee580.gif)
 
 
 #### Editar tareas
+Para editar tareas existen dos metodos:
+* Editar estado:
+Para editar el estado de una tarea solamente hay que clicar encima de ella y se modificara su estado, mostrandose o quitandose una barra entre el texto:
+
+![editar estado](https://user-images.githubusercontent.com/60347715/204242614-9baa5389-e852-4e22-a75a-94b353110be4.gif)
+
+* Editar texto:
+Para editar el texto de una tarea se debe pulsar el icono de la llave inglesa, el cual mostrara un modal que contiene el texto de la tarea:
+
+![editar texto](https://user-images.githubusercontent.com/60347715/204242621-1dbdd846-e886-4551-ad4c-a3e4306a6308.gif)
 
 #### Buscar tareas
+Para poder buscar una tarea se debe usar la barra de busqueda la cual permite buscar tareas en concreto o tareas que contengan la palabra introducida:
+
+![buscar](https://user-images.githubusercontent.com/60347715/204242638-ab0485c5-5e32-4302-a1d9-c4c0f13e2e6f.gif)
 
 #### Borrar tareas
+Para poder borrar una tarea se debe pulsar el boton con el icono de la goma de borrar y guardar los cambios:
+
+![borrar](https://user-images.githubusercontent.com/60347715/204242649-20630aff-cb9d-4378-8ffd-2e4c3511f9b7.gif)
 
 #### Ordenar tareas
+Para ordenar las tareas simplemente hay que arrastrar la tarea elegida a la posicion deseada:
+
+![ordenar](https://user-images.githubusercontent.com/60347715/204242670-3f24b564-e33a-443e-bdc3-794492ea2178.gif)
+
 
 ## Funciones implementadas
 
