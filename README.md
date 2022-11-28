@@ -72,7 +72,7 @@ Para ordenar las tareas simplemente hay que arrastrar la tarea elegida a la posi
  
 ### -Crear
 
-La función crear permite añadir un nuevo elemento a la lista de tareas poniéndolo automáticamente en la posición final de la lista.
+La función OnNewWish recibe el texto del input de creacion, genera un id nuevo, crea una nueva tarea y la guarda en la lista de tareas.
     
 ```
     onNewWish={(newWish) => {
@@ -85,7 +85,8 @@ La función crear permite añadir un nuevo elemento a la lista de tareas ponién
 ### -Editar
 
 Existen dos funciones que permiten editar un elemento de la lista:
-* OnUpdateWish: Esta función permite modificar el estado de una tarea de la lista true o false para determinar su progreso.
+* OnUpdateWish: Esta función permite modificar el estado de una tarea de la lista true o false para determinar su progreso mediante el clickado del elemento que se
+   quiere modificar.
                         
 ```
   onUpdateWish={(updatedWish) => {
@@ -100,7 +101,8 @@ Existen dos funciones que permiten editar un elemento de la lista:
       // console.log(`cambio en lista: ${wishes}`);
   }}
 ```
-* OnModifiedWish: Esta función despliega un modal el cual nos permitirá editar el texto de la tarea.
+* OnModifiedWish: Esta funcion recibe tanto el id del elemento a modificar como el nuevo texto, hace una busqueda entre los elementos de la tabla y modifica el 
+  el texto anterior por el nuevo, guardandolo automaticamente en la memoria el cambio.
 
 ```
   onModifiedWish={(idEdit, idText) => {
@@ -123,7 +125,7 @@ Existen dos funciones que permiten editar un elemento de la lista:
 
 ### -Borrar
 
-Esta función permite eliminar un deseo de la lista.
+La función de guardado recibe el id de uno de los elementos de la lista y mediante la funcíon filter busca dentro de la lista el id guardado y lo expulsa.
    
 ```
   onRemoveWish={(idBorrado) => {
@@ -135,7 +137,7 @@ Esta función permite eliminar un deseo de la lista.
 
 ### -Ordenar
 
-Esta función permite ordenar los elementos de la lista usando el ratón del ordenador, con el cual se podrá arrastrar el elemento a la posición deseada.
+Utilizando DragDropContext se puede modificar la posición de los elementos de la lista a tiempo real, permitiendo ordenar a gusto del usuario las tareas.
    
 ```
   <DragDropContext
