@@ -26,3 +26,9 @@ En dicha lista se han implementado funciones para modificar el estado de las tar
 -Guardado
     Finalmente la función de guardado permite guardar los cambios a la lista en la memoria interna del dispositivo, permitiendo ver las tareas y cambios realizados en la lista en distintos momentos.
 
+## Authors
+
+Contributors names and contact info
+
+ex. Dominique Pizzie  
+ex. [Jose angel](https://github.com/josang1567)
