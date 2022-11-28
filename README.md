@@ -37,6 +37,8 @@ La primera vez que se accede a la aplicacion se creara una lista de tareas por d
 
 #### Editar tareas
 
+#### Buscar tareas
+
 #### Borrar tareas
 
 #### Ordenar tareas
