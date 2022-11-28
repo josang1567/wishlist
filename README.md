@@ -174,6 +174,9 @@ Finalmente la función de guardado permite guardar los cambios a la lista en la 
 
 [Jose angel](https://github.com/josang1567)
 
+## Licensia
+
+Este proyecto tiene la licencia  GNU GENERAL PUBLIC LICENSE - consulte el archivo LICENSE.md para obtener más información
 
 ## -Codigos relacionados
 
