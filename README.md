@@ -19,9 +19,9 @@ En dicha lista se han implementado funciones para modificar el estado de las tar
 - [x] Buscar deseos, la lista se filtrará mostrando sólo los que correspondan con la búsqueda. Incluir algún proceso para eliminar esa búsqueda y que vuelvan a aparecer todos los deseos.
 
 ## Instalación
-* Para poder instalar el programa se ha de descargar el repositorio de [github](https://github.com/josang1567/wishlist)
-* Una vez descargado se debe de descargar la carpeta node modules
-* Finalmente para probar el programa se usara la siguiente linea de comando:
+1. Para poder instalar el programa se ha de descargar el repositorio de [github](https://github.com/josang1567/wishlist)
+2. Una vez descargado se debe de descargar la carpeta node modules
+3. Finalmente para probar el programa se usara la siguiente linea de comando:
  
 ```
   npm run start
