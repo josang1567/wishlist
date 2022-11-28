@@ -17,11 +17,11 @@ npm run start
 ```
 
 ## Funciones implementadas
+
+
  
 ### -Crear
-<details><summary></summary>
-  
-<p>
+
 La función crear permite añadir un nuevo elemento a la lista de tareas poniéndolo automáticamente en la posición final de la lista.
     
 ```
@@ -30,14 +30,10 @@ La función crear permite añadir un nuevo elemento a la lista de tareas ponién
           setWishes([...wishes, newWish]);
         }} 
 ```
- </p>
-  
-</details>
+
 
 ### -Editar
-<details><summary></summary>
-  
-<p>
+
 Existen dos funciones que permiten editar un elemento de la lista:
 * OnUpdateWish: Esta función permite modificar el estado de una tarea de la lista true o false para determinar su progreso.
                         
@@ -73,14 +69,10 @@ Existen dos funciones que permiten editar un elemento de la lista:
             }
           }}
 ```
-  </p>
-  
-</details> 
+
 
 ### -Borrar
-<details><summary></summary>
-  
-<p>
+
 Esta función permite eliminar un deseo de la lista.
    
 ```
@@ -89,14 +81,10 @@ Esta función permite eliminar un deseo de la lista.
       setWishes(filterWishes);
     }}
  ```
-</p>
-  
-</details> 
+
 
 ### -Ordenar
-<details><summary></summary>
-  
-<p>
+
 Esta función permite ordenar los elementos de la lista usando el ratón del ordenador, con el cual se podrá arrastrar el elemento a la posición deseada.
    
 ```
@@ -119,14 +107,10 @@ Esta función permite ordenar los elementos de la lista usando el ratón del ord
      </DragDropContext>
      
 ```
-</p>
-  
-</details>
+
 
 ### -Guardado
-<details><summary></summary>
-  
-<p>
+
 Finalmente la función de guardado permite guardar los cambios a la lista en la memoria interna del dispositivo, permitiendo ver las tareas y cambios realizados en la lista en distintos momentos.
 ```
   onWishesSave={() => {
@@ -135,9 +119,7 @@ Finalmente la función de guardado permite guardar los cambios a la lista en la 
         }}
 ```
   
-</p>
-  
-</details>
+
 
 ## -Autores
 
